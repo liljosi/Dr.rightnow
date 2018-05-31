@@ -1,0 +1,13 @@
+{
+    "log": {
+        "file": {
+            "level": "warn",
+            "filename": "log.log",
+            "name": "logger",
+            "colorize": true
+        },
+        "console": {
+             "colorize": true
+        }
+    }
+}
