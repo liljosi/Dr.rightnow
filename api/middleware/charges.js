@@ -1,4 +1,5 @@
 const knex = require('../../knex')
+const logger = require('../../lib/logger')
 const config = require('../../config')()
 const CONEKTA_SECRET_KEY = config.get('conekta:conekta_secret_key')
 const conekta = require('conekta')
@@ -15,7 +16,7 @@ function createChargeToOrderByOrderId (req,res,next) {
             },
         
       }, function(err, charge) {
-            console.log(JSON.stringify(charge));
+            logger.info(JSON.stringify(charge));
             knex('charges').insert({
                 id:charge.id,
                 object:charge.payment_method.object,
@@ -24,9 +25,9 @@ function createChargeToOrderByOrderId (req,res,next) {
                 order_id:charge.order_id,
                 payment_method:charge.payment_method.service_name,
                 reference:charge.payment_method.reference
-            }).then(()=>{
-                res.json(charge)
-            })
+            }).then(() => {
+                 res.json(charge)
+             })
         })
     })
 }

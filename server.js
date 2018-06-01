@@ -11,11 +11,13 @@ app.use(bodyParser.urlencoded({
 const clientRouter = require('./api/routes/clients')
 const orderRouter = require('./api/routes/orders')
 const chargeRouter = require('./api/routes/charges')
+const HooksRouter = require('./api/routes/conekta/hooks')
 
-app.use('/payments',clientRouter)
-app.use('/payments',orderRouter)
-app.use('/payments',chargeRouter)
+app.use('/payments', clientRouter)
+app.use('/payments', orderRouter)
+app.use('/payments', chargeRouter)
+app.use('/hooks', HooksRouter)
 
-app.listen('3000',()=>{
+app.listen('3000',() => {
     console.log('express running')
 })

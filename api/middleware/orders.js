@@ -1,4 +1,5 @@
 const knex = require('../../knex')
+const logger = require('../../lib/logger')
 const config = require('../../config')()
 const CONEKTA_SECRET_KEY = config.get('conekta:conekta_secret_key')
 const conekta = require('conekta')
@@ -38,17 +39,17 @@ function createOrderForClient (req,res,next) {
       
        
      }, function(err, order) {
-         console.log(JSON.stringify(order))
-         console.log(order._json.object)
+         logger.info(JSON.stringify(order))
+         logger.info(order._json.object)
         
         knex('orders').insert({
             id:order._id,
-           object:order._json.object,
-         currency:order._json.currency,
-         amount:order._json.amount,
-         customer_id:order._json.customer_info.customer_id,
-         created_at:order._json.created_at,
-          updated_at:order._json.updated_at
+            object:order._json.object,
+            currency:order._json.currency,
+            amount:order._json.amount,
+            customer_id:order._json.customer_info.customer_id,
+            created_at:order._json.created_at,
+            updated_at:order._json.updated_at
         }).then(()=>{res.send('Order created for client with id:'+id.id)})
      })
 }
@@ -72,7 +73,7 @@ function updateOrderByOrderId (req,res,next) {
         order.update({
           "currency": currency
         }, function(err, response) {
-          console.log(JSON.stringify(response));
+          logger.info(JSON.stringify(response));
           res.send('Order with id: '+id.id +' updated')
         
         });

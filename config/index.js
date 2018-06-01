@@ -43,6 +43,10 @@ module.exports = function (path = Path.join(__dirname, '../', 'config')) {
         CANCELED: 'CANCELED',
         DECLINED: 'PAYMENT_DECLINED'
       }*/
+    },
+    twilio: {
+      twilio_auth_token: process.env.TWILIO_AUTH_TOKEN,
+      twilio_account_sid: process.env.TWILIO_ACCOUNT_SID
     }
   })
   return nconf
