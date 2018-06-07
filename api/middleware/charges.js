@@ -11,12 +11,12 @@ function createChargeToOrderByOrderId (req,res,next) {
         order.createCharge({
             "payment_method": {
             "type": "oxxo_cash",
-            "expires_at": 1527443084
+            "expires_at": 1540048614
             
             },
         
       }, function(err, charge) {
-            logger.info(JSON.stringify(charge));
+            
             knex('charges').insert({
                 id:charge.id,
                 object:charge.payment_method.object,

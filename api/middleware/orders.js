@@ -39,8 +39,8 @@ function createOrderForClient (req,res,next) {
       
        
      }, function(err, order) {
-         logger.info(JSON.stringify(order))
-         logger.info(order._json.object)
+        /* logger.info(JSON.stringify(order))
+         logger.info(order._json.object)*/
         
         knex('orders').insert({
             id:order._id,
