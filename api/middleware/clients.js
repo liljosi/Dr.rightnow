@@ -6,11 +6,11 @@ const config = require('../../config')()
 const CONEKTA_SECRET_KEY = config.get('conekta:conekta_secret_key')
 conekta.api_key = CONEKTA_SECRET_KEY
 
-function createClient(req,res,next){
+function createClient(req,res,next) {
     var password = req.body.password
     var saltRounds = 10
     logger.info(password)
- var client =  conekta.Customer.create({
+   var client =  conekta.Customer.create({
         name: 'Manuel Topeta',
         email: 'usuario@example.com',
         phone: '+5215555555555',
@@ -32,7 +32,7 @@ function createClient(req,res,next){
    
 }
 
-function getClient (req,res,next){
+function getClient (req,res,next) {
     knex('clients').select().then((clients)=>{
         res.json(clients)
     })
@@ -65,8 +65,8 @@ function updateClientById (req,res,next) {
                     
             
                 }).where(id).then(()=>{res.send('client updated')})
-            });
-      });
+            })
+      })
 }
 
 function deleteClientById (req,res,next) {
@@ -76,8 +76,8 @@ function deleteClientById (req,res,next) {
           knex('clients').delete().where(id).then(()=>{
               res.send('Se eliminó el cliente con id:'+id.id)
           })
-        });
-      });
+        })
+      })
 }
 
 module.exports = {
