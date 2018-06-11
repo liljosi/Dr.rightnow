@@ -5,12 +5,12 @@ const CONEKTA_SECRET_KEY = config.get('conekta:conekta_secret_key')
 const conekta = require('conekta')
 conekta.api_key = CONEKTA_SECRET_KEY
 
-Date.prototype.addHours = h => {
-  this.setHours(this.getHours()+h);
+/*Date.prototype.addHours = h => {
+  this.setHours(this.getHours()+h)
   return this
-}
+}*/
 
-let date = Math.floor(new Date().addHours(4)/1000)
+let date = Math.floor(new Date()/*.addHours(4)*//1000)
 
 function createChargeToOrderByOrderId (req,res,next) {
     const id = {customer_id:req.params.customer_id,id:req.params.id}

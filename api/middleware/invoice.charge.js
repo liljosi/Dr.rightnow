@@ -27,7 +27,7 @@ module.exports = (req,res,next) => {
 
        /* client.messages
         .create({
-            body: 'El pago ha sido verificado con éxito',
+            body: 'El pago ha sido realizado exitosamente',
             from: '+523121949384',
             to: '+523121949384'
         })
