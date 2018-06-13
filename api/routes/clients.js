@@ -5,7 +5,9 @@ createClient,
 getClient,
 getClientById,
 updateClientById,
-deleteClientById
+deleteClientById,
+getClientPaymentHistory,
+getClientPaymentHistoryByOrderId
 } = require('../middleware/clients')
 
 
@@ -18,6 +20,12 @@ router.route('/clients/:id')
 .get(getClientById)
 .put(updateClientById)
 .delete(deleteClientById)
+
+router.route('/clients/:id/payment_history')
+.get(getClientPaymentHistory)
+
+router.route('/clients/:id/payment_history/:order_id')
+.get(getClientPaymentHistoryByOrderId)
 
 
 

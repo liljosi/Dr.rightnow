@@ -26,14 +26,14 @@ function createClient(req,res,next) {
                     email: customer._json.email,
                     phone: customer._json.phone,
                     password:hash
-                }).then(()=>{res.send('client created')})
+                }).then(() => { res.send('client created') })
             })
     })
    
 }
 
 function getClient (req,res,next) {
-    knex('clients').select().then((clients)=>{
+    knex('clients').select().then((clients) => {
         res.json(clients)
     })
 }
@@ -43,7 +43,7 @@ function getClientById (req,res,next) {
         id : req.params.id
     } 
     logger.info(id.id)
-    knex('clients').select().where( id).then((client)=>{
+    knex('clients').select().where( id).then((client) => {
         res.json(client)
     })
 }
@@ -64,7 +64,7 @@ function updateClientById (req,res,next) {
                     email: user._json.email,
                     
             
-                }).where(id).then(()=>{res.send('client updated')})
+                }).where(id).then(() => { res.send('client updated') })
             })
       })
 }
@@ -73,11 +73,25 @@ function deleteClientById (req,res,next) {
     const id ={id:req.params.id}
     const eliminated = conekta.Customer.find(id.id, function(err, customer) {
         customer.delete(function(err, response) {
-          knex('clients').delete().where(id).then(()=>{
+          knex('clients').delete().where(id).then(() => {
               res.send('Se eliminó el cliente con id:'+id.id)
           })
         })
       })
+}
+
+const getClientPaymentHistory = (req,res,next) => {
+    let {id} = req.params
+    knex('orders').select().where('customer_id',id).then((response) => {
+        res.json(response)
+    })
+}
+
+const getClientPaymentHistoryByOrderId = (req,res,next) => {
+    let {order_id} = req.params
+    knex('charges').select().where('order_id',order_id).then((response) => {
+        res.json(response)
+    })
 }
 
 module.exports = {
@@ -85,5 +99,7 @@ module.exports = {
     getClient,
     getClientById,
     updateClientById,
-    deleteClientById
+    deleteClientById,
+    getClientPaymentHistory,
+    getClientPaymentHistoryByOrderId
 }

@@ -49,7 +49,8 @@ function createOrderForClient (req,res,next) {
             amount:order._json.amount,
             customer_id:order._json.customer_info.customer_id,
             created_at:order._json.created_at,
-            updated_at:order._json.updated_at
+            updated_at:order._json.updated_at,
+            producto: order._json.line_items.name
         }).then(()=>{res.send('Order created for client with id:'+id.id)})
      })
 }

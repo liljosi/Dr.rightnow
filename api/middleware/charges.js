@@ -18,7 +18,7 @@ function createChargeToOrderByOrderId (req,res,next) {
         order.createCharge({
             "payment_method": {
                 "type": "oxxo_cash",
-                "expires_at": date
+                "expires_at": 1528985931
             
              },
         

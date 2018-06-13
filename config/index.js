@@ -46,7 +46,9 @@ module.exports = function (path = Path.join(__dirname, '../', 'config')) {
     },
     twilio: {
       twilio_auth_token: process.env.TWILIO_AUTH_TOKEN,
-      twilio_account_sid: process.env.TWILIO_ACCOUNT_SID
+      twilio_account_sid: process.env.TWILIO_ACCOUNT_SID,
+      twilio_test_account_sid: process.env.TWILIO_ACCOUNT_TEST_SID,
+      twilio_test_auth_token: process.env.TWILIO_TEST_AUTH_TOKEN
     }
   })
   return nconf

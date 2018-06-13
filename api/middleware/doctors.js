@@ -10,7 +10,8 @@ const createDoctor = (req,res,next) => {
               id:id,
               name:name,
               email:email.email,
-              phone:phone
+              phone:phone,
+              notifications: 'true'
           }).then(() => {
               res.send('Doctor registered successfully!')
           })
@@ -28,7 +29,7 @@ const getDoctorById = (req,res,next) => {
     })
 }
 
-const updateUserById = (req,res,next) => {
+const updateDoctorById = (req,res,next) => {
     let {id} = req.params
     let {name,email,phone} = req.body 
     knex('doctors').update({name:name,email:email,phone:phone})
@@ -38,7 +39,7 @@ const updateUserById = (req,res,next) => {
     })
 }
 
-const deleteUserById = (req,res,next) => {
+const deleteDoctorById = (req,res,next) => {
     let {id} = req.params
 
     knex('doctors').delete().where('id', id)
@@ -47,9 +48,40 @@ const deleteUserById = (req,res,next) => {
     })
 }
 
+const updatePacientPaymentStatus = (req,res,next) => {
+    let {chargeId} = req.params
+    let {status} = req.body
+    knex('charges').update({status:status}).where('id',chargeId)
+    .then(() => {
+        res.send('Payment Status for charge: '+chargeId+' updated')
+    })
+}
+
+const stopPaymentNotifications = (req,res,next) => {
+    let {id} = req.params
+    let {recieveNotifications} = req.body
+    knex('doctors').select('notifications').where('id',id).then((response) => {
+        console.log(response)
+        //condition if 
+        //knex update notifications put true if false and false if true 
+        if(response[0].notifications == 'true') {
+            knex('doctors').update({notifications:'false'}).where('id',id).then(() => {
+                res.send('Notifications turned off')
+            })
+        } else {
+            knex('doctors').update({notifications:'true'}).where('id',id).then(() => {
+                res.send('notifications turned on')
+            })
+        }
+    })
+    
+}
+
 module.exports = {
     createDoctor,
     getDoctorById,
-    updateUserById,
-    deleteUserById
+    updateDoctorById,
+    deleteDoctorById,
+    updatePacientPaymentStatus,
+    stopPaymentNotifications
 }
