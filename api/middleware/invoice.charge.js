@@ -42,5 +42,5 @@ module.exports = (req,res,next) => {
              })
          }
     })
-        res.send('ok:1')
+        res.send('ok')
 }
