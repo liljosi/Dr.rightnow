@@ -4,7 +4,6 @@ const createDoctor = (req,res,next) => {
   let email = { email:req.body.email }
   let {id,name,phone} = req.body
   knex('doctors').select().where(email).then((response) => {
-      console.log(response)
         if(response == false) {
           knex('doctors').insert({
               id:id,
@@ -23,7 +22,6 @@ const createDoctor = (req,res,next) => {
 
 const getDoctorById = (req,res,next) => {
     let {id} = req.params
-    console.log(id)
     knex('doctors').select().where('id',id).then((response) => {
         res.json(response)
     })
@@ -61,9 +59,6 @@ const stopPaymentNotifications = (req,res,next) => {
     let {id} = req.params
     let {recieveNotifications} = req.body
     knex('doctors').select('notifications').where('id',id).then((response) => {
-        console.log(response)
-        //condition if 
-        //knex update notifications put true if false and false if true 
         if(response[0].notifications == 'true') {
             knex('doctors').update({notifications:'false'}).where('id',id).then(() => {
                 res.send('Notifications turned off')
