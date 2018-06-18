@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "jest __tests__ --watch",
-    "start": "server.js"
+    "start": "node server.js"
   },
   "author": "Josue Del Rio Gudiño",
   "license": "ISC",
