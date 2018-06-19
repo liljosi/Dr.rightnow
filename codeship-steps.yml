@@ -1,12 +1,8 @@
 type: parallel
   steps:
-  - name: start
-    service: web-codeship-example-node
-    command: npm start
+  - name: lint
+    service: web
+    command: npm run lint
   - name: tests
-    service: web-codeship-example-node
-    command: npm test 
-- name: deploy
-  tag: master
-  service: codeship-heroku-deployment
-  command: codeship_heroku deploy /deploy Dr.rightnow
+    service: web
+    command: npm test -- --forceExit
