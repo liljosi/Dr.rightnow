@@ -1,7 +1,7 @@
 web:
   build: .
   links:
-   - postgres
+     postgres
    environment:
     DATABASE_URL: postgres://dr.rightnow@postgres/dr.rightnow
    cache: true
