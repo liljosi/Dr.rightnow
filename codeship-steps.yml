@@ -1,4 +1,4 @@
-type: parallel
+- type: parallel
   steps:
   - name: lint
     service: web
