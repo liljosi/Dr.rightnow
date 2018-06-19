@@ -2,7 +2,7 @@
   steps:
   - name: lint
     service: web
-    command: npm run lint
+    command: npm start
   - name: tests
     service: web
     command: npm test -- --forceExit
