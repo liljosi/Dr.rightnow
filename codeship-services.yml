@@ -1,11 +1,12 @@
 web:
   build: .
-  links: postgres
-   environment:
+  links:
+    - postgres
+  environment:
     DATABASE_URL: postgres://dr.rightnow@postgres/dr.rightnow
-   cache: true
-  postgres:
-    image: postgres:9.6.2-alpine
-    environment:
-      POSTGRES_USER: dr.rightnow
-      POSTGRES_DB: dr.rightnow
+  cache: true
+postgres:
+  image: postgres:9.6.2-alpine
+  environment:
+    POSTGRES_USER: dr.rightnow
+    POSTGRES_DB: dr.rightnow
